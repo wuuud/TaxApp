@@ -25,13 +25,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var taxPriceLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBAction func addPrice(_ sender: UIButton) {
-        if taxPriceLabel.text != "" {
+        if taxPriceLabel.text != "" && Double(priceText.text!) != nil {
             if let tax = Double(taxPriceLabel.text!) {
                 taxArray.append(tax) //TextFiebldで記入されたテキストを入れる
                 userDefaults.set(taxArray, forKey: "add") //キー"add"で配列をUserDefaultsに保存
                 taxPriceLabel.text = ""
+                priceText.text = ""
             }
             tableView.reloadData()
+        } else {
+            showAlert(message: "数字を入力してください")
         }
     }
     @IBAction func deleteTaxArrayButton(_ sender: Any) {
@@ -43,7 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //segmentedhttps://qiita.com/rea_sna/items/7e472af2ce8d03831b55
     @IBOutlet weak var selectSegmentedControl: UISegmentedControl!
     @IBAction func tappedSegmentedControl(_ sender: UISegmentedControl) {
-        if priceText.text != "" {
+        if priceText.text != nil && Double(priceText.text!) != nil {
             switch sender.selectedSegmentIndex {
                 //https://ios-docs.dSev/swiftui-part5/
             case 0:
@@ -55,6 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }else {
             priceText.text = String(0)
+            showAlert(message: "数字を入力してください")
         }
     }
     
@@ -96,6 +100,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print(String(taxArray[indexPath.row]))
         return cell
     }
+//テキストを編集するたび(文字が入力されるたび)呼ばれるメソッド。 https://naoya-ono.com/swift/uitextfield-delegate/#7_textField 7番目
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+      print("変更あり")
+      return true
+    }
     
     //4.関数
     //4-2.func
@@ -113,10 +122,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let price = Double(unwrappedPriceText)
             let tax = price! * (num)
             self.taxPriceLabel.text = String(tax)
-            priceText.text = ""
         }else {
             priceText.text = String(0)
-            priceText.text = ""
         }
     }
 }
