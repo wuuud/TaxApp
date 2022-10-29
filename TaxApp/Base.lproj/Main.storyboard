@@ -50,6 +50,9 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="priceText:" destination="eR9-FP-g1D" eventType="editingChanged" id="kWL-SE-3Hn"/>
+                                </connections>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VIt-FW-FPS">
                                 <rect key="frame" x="214" y="208.33333333333334" width="93" height="32"/>
@@ -137,7 +140,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="priceText" destination="T1n-WN-Hta" id="GtT-a5-YCV"/>
+                        <outlet property="priceText" destination="T1n-WN-Hta" id="ahZ-hv-mMW"/>
                         <outlet property="selectSegmentedControl" destination="VIt-FW-FPS" id="qDF-Cm-pE2"/>
                         <outlet property="tableView" destination="ttq-8Q-tv1" id="XCo-nq-yQF"/>
                         <outlet property="taxPriceLabel" destination="Cd3-OX-wmR" id="dwQ-QJ-XWP"/>
@@ -166,7 +169,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoI-ch-4Mp">
-                                <rect key="frame" x="0.0" y="35" width="390" height="101"/>
+                                <rect key="frame" x="0.0" y="35" width="390" height="101.33333333333331"/>
                                 <items>
                                     <navigationItem id="9yg-VQ-6yA">
                                         <barButtonItem key="leftBarButtonItem" title="＜ 戻る" id="weh-Ly-IKd">
